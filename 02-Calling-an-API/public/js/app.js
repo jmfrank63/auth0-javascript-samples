@@ -96,6 +96,32 @@ const callApi = async () => {
   }
 };
 
+const registerApp = async () => {
+  const clientName = document.getElementById("input-client-name").value;
+  const redirectUri = document.getElementById("input-redirect-uri").value;
+
+  try {
+    const token = await auth0.getTokenSilently();
+
+    const response = await fetch("/api/register", {
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new TypeError(`Oops, we haven't got JSON got ${contentType} instead.`);
+    }
+
+
+    
+  } catch (e) {
+    console.error(e);
+  } 
+}
+
 // Will run when page finishes loading
 window.onload = async () => {
   await configureClient();
@@ -120,6 +146,9 @@ window.onload = async () => {
     } else if (e.target.getAttribute("id") === "call-api") {
       e.preventDefault();
       callApi();
+    } else if (e.target.getAttribute("id") === "register-app"){
+      e.preventDefault();
+      registerApp();
     }
   });
 

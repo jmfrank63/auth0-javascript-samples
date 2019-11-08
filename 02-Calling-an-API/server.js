@@ -35,6 +35,12 @@ app.get("/api/external", checkJwt, (req, res) => {
   });
 });
 
+app.get("/api/register", checkJwt, (req, res) => {
+  res.send({
+    msg: "Your access token was successfully validated!"
+  });
+});
+
 app.get("/auth_config.json", (req, res) => {
   res.sendFile(join(__dirname, "auth_config.json"));
 });

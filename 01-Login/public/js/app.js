@@ -92,7 +92,7 @@ window.onload = async () => {
       }
     }
   });
-
+  updateUI();
   const isAuthenticated = await auth0.isAuthenticated();
 
   if (isAuthenticated) {

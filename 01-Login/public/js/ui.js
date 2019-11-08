@@ -51,6 +51,7 @@ const isRouteLink = (element) =>
 const showContent = (id) => {
   eachElement(".page", (p) => p.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
+  updateUI();
 };
 
 /**
